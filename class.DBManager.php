@@ -63,8 +63,11 @@ class DBManager
             {
                 if ( $entry->isFile() && strtoupper(pathinfo($entry->getFilename(), PATHINFO_EXTENSION)) == 'SQL' )
                 {
-                	$fileinfo = explode(',', $entry->getFilename());
-                	$this->patches[$fileinfo[0]][] = substr( $fileinfo[1],0, strlen($fileinfo[1])-4 );
+			$fileinfo = explode(',', $entry->getFilename());
+			if($fileinfo[0] != "Example")
+			{
+				$this->patches[$fileinfo[0]][] = substr( $fileinfo[1],0, strlen($fileinfo[1])-4 );
+			}
                 }
             }
         }
